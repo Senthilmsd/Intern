@@ -1,0 +1,25 @@
+const form = document.getElementById('todo-form');
+const taskInput = document.getElementById('task');
+const taskList = document.getElementById('task-list');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const taskText = taskInput.value;
+    if (taskText.trim() !== '') {
+        const taskItem = document.createElement('li');
+        taskItem.innerHTML = `
+            <input type="checkbox">
+            <span>${taskText}</span>
+            <button class="delete-btn">Delete</button>
+        `;
+        taskList.appendChild(taskItem);
+        taskInput.value = '';
+    }
+});
+
+taskList.addEventListener('click', function (e) {
+    if (e.target.classList.contains('delete-btn')) {
+        e.target.parentElement.remove();
+    }
+})
